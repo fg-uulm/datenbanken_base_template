@@ -1,0 +1,64 @@
+<template>
+    <div>
+        <b-list-group 
+        class="list-main"
+        v-for="station in stations" 
+        :key="station.id"
+        >
+        <b-list-group-item href="#" 
+                           class="flex-column align-items-start" 
+                           @click="showStation(station)"
+                           :class="{ 'active': activeItem == station.idstations }">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{station.station_name}}</h5>
+                <small>10 sec ago</small>
+            </div>
+
+            <p class="mb-1">
+                Standort: {{station.station_location}}
+            </p>
+        </b-list-group-item>        
+    </b-list-group>
+</div>
+</template>
+
+<script>
+    import axios from "axios";
+
+    export default {  
+        data() {
+            return {
+                stations: [],
+                activeItem: Number
+            };
+        },
+        mounted() {
+            /*
+            *   Hier holen wir die Stationsliste von unserem Endpoint ab
+            */
+            axios.get("http://localhost:3000/station")
+            .then(response => {
+                //Durch Update der "stations"-Variable wird auch die Liste aktualisiert
+                this.stations = [...response.data]
+                this.activeItem = 1
+                this.$emit('show-station', this.stations[0])
+            })
+            .catch(err => {
+                console.log("Fehler: "+err)      
+            })                      
+        },
+        methods: {
+            showStation(stationObj) {
+                this.$emit('show-station', stationObj)
+                console.log("Showing station "+stationObj.idstations)
+                this.activeItem = stationObj.idstations
+            },
+        },
+    };
+</script>
+
+<style scoped>
+.list-main {
+    width:100%;
+}
+</style>

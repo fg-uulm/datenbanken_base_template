@@ -1,4 +1,4 @@
-# template_app_1
+# IoT1 DB Template
 
 ## Project setup
 ```

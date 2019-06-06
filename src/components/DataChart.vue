@@ -74,7 +74,7 @@
       },
       watch: {
         //Hier schauen wir ob ein anderer Sensor ausgewählt wurde, wenn ja laden wir neue Daten
-        selectedSensor: function(val, oldVal) {
+        selectedSensor: function() {
           this.showStationData();
         }
       },

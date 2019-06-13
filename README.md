@@ -1,29 +1,21 @@
-# IoT1 DB Template
+# Datenbanken Template-App
 
-## Project setup
+## Module installieren (nur einmalig nach Download, im Wurzelordner)
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Starten (erkennt Änderungen und lädt automatisch neu, im Wurzelordner)
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Arduino- und Endpointserver starten, im server-Order (davor cd server)! (nodemon erkennt Änderungen, node nicht)
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
+node server.js
 ```
 
-### Lints and fixes files
 ```
-npm run lint
+nodemon server.js
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

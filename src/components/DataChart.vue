@@ -1,5 +1,6 @@
 <template>
   <div class="chart-container">
+    <!-- TODO: In nächster Zeile station_name durch euren Spaltenname in dem der Stationsname gespeichert ist ersetzen -->
     <h2>Daten für Station: {{stationObj.station_name}}</h2>
     <line-chart @show-station="showStation" 
     :chart-data="datacollection" 
@@ -46,6 +47,7 @@
                 autoSkip: true
               },
               time: {
+                //TODO: in der nächsten Zeile kann der Bereich des Graphen definiert werden (2018 bis heute, Angabe für Woche geht auch: 2019W20)
                 min: '2018',
               },
             }],
@@ -58,6 +60,7 @@
             }]
           } , responsive: true, maintainAspectRatio: false, },
           stationObj: Object,
+          //TODO: hier einen existierenden Sensorname aus euren Sensoren eintragen damit am Anfang direkt Daten angezeigt werden
           selectedSensor: 'sensor1',
           sensors: [],
         }
@@ -83,6 +86,7 @@
         showStation(stationObj) {
             this.stationObj = stationObj
             //Verfügbare Sensoren von unserem REST-Endpoint abholen
+            //TODO: idstations in der nächsten Zeile so umbenennen wie eure Stations-ID-Spalte in der DB heißt
             axios.get("http://localhost:3000/station/"+this.stationObj.idstations+"/sensors")
             .then(response => {
               //Sensoren speichern
@@ -99,6 +103,7 @@
 
         showStationData() {
            //Daten für den momentanen Sensor von unserem REST-Endpoint abholen
+           //TODO: idstations in der nächsten Zeile so umbenennen wie eure Stations-ID-Spalte in der DB heißt
            axios.get("http://localhost:3000/station/"+this.stationObj.idstations+"/"+this.selectedSensor+"/data")
            .then(response => {
               //Empfangene Daten speichern
